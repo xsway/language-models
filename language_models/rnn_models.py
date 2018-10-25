@@ -64,7 +64,7 @@ class BidirectionalLanguageModel(nn.Module):
         output = output_f + utils.flip(output_b, dim=0)   # output is sum of forward and backward
 
         decoded = self.decoder(output.view(output.size(0)*output.size(1), output.size(2)))
-        return decoded.view(output.size(0), output.size(1), decoded.size(1)), hidden_f + hidden_b
+        return decoded.view(output.size(0), output.size(1), decoded.size(1)), (hidden_f, hidden_b)
 
     def init_hidden(self, bsz):
         return self.forward_lstm.init_hidden(bsz), self.backward_lstm.init_hidden(bsz)

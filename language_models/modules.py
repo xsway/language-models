@@ -140,5 +140,5 @@ class StackedRNN(nn.Module):
                 hidden.append((weight.new(1, bsz, nhid).fill_(0.01),
                                weight.new(1, bsz, nhid).fill_(0.01)))
             else:
-                hidden.append(weight.new_full((1, bsz, nhid), 0.01))
+                hidden.append(weight.new(1, bsz, nhid).fill_(0.01))
         return hidden
